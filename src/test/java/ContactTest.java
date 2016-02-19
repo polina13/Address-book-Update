@@ -31,5 +31,47 @@ public class ContactTest {
     assertEquals("May", testContact.getBirthMonth());
   }
 
+  @Test
+    public void getId_returnsContactId() {
+      Contact testContact = new Contact("test","test2", "May");
+      assertTrue(Contact.all().size() == testContact.getId());
 
+    }
+
+    @Test
+    public void all_returnsAllContacts_true() {
+    Contact firstContact = new Contact("test", "test2", "May");
+    Contact secondContact = new Contact("test3", "test4", "June");
+    assertTrue(Contact.all().contains(firstContact));
+    assertTrue(Contact.all().contains(secondContact));
+    }
+
+
+    @Test
+    public void newId_contactsInstantiateWithAnID_true() {
+      Contact testContact = new Contact("test", "test2", "May");
+      assertEquals(Contact.all().size(), testContact.getId());
+    }
+
+    @Test
+    public void find_returnsContactkWithSameId_secondContact() {
+      Contact firstContact = new Contact("test", "test2", "May");
+      Contact secondContact = new Contact("test3", "test4", "June");
+      assertEquals(Contact.find(secondContact.getId()), secondContact);
+    }
+
+    @Test
+    public void clear_removesAllContactInstancesFromMemory() {
+      Contact testContact = new Contact("test", "test2", "May");
+      Contact.clear();
+      assertEquals(Contact.all().size(), 0);
+    }
+    //
+    // @Test
+    // public void addTask_addsTaskToList() {
+    //   Category testCategory = new Category("Bob's Used Tasks");
+    //   Task testTask = new Task("Mow the lawn");
+    //   testCategory.addTask(testTask);
+    //   assertTrue(testCategory.getTasks().contains(testTask));
+    // }
 }
